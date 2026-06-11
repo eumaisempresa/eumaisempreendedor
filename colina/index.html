@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EU⁺ Empreender · Painel Lavanderia Colinas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#1E1206;--bg2:#261808;--bg3:#2E1E0A;--bg4:#38260E;
+  --orange:#E8720C;--orange2:#F5A05A;
+  --text:#FFF8F0;--muted:#B08060;
+  --border:rgba(232,114,12,0.18);--border2:rgba(232,114,12,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(30,18,6,0.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-eu{font-family:'Cormorant Garamond',serif;font-size:0.85rem;font-weight:300;color:var(--muted);text-decoration:none;letter-spacing:0.04em;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.nav-eu:hover{color:var(--orange)}
+.nav-eu span{color:var(--orange);font-weight:600}
+.nav-cliente{display:flex;align-items:center;gap:10px}
+.nav-cliente img{width:34px;height:34px;object-fit:contain;border-radius:3px;border:1px solid var(--border);background:white;padding:2px}
+.nav-cliente-nome{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:var(--text);letter-spacing:0.03em}
+
+.hero{padding:52px 32px 40px;border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-120px;width:400px;height:400px;background:radial-gradient(circle,rgba(232,114,12,0.12) 0%,transparent 65%);pointer-events:none}
+.hero-eyebrow{font-size:0.65rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.hero-eyebrow::before{content:'';width:18px;height:1px;background:var(--orange)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;color:var(--text);line-height:1.15;margin-bottom:10px}
+.hero p{font-size:0.88rem;font-weight:300;color:var(--muted);line-height:1.7;max-width:520px}
+
+.sec{padding:40px 32px;position:relative;z-index:1}
+.sec+.sec{border-top:1px solid var(--border2)}
+.sec-label{font-size:0.64rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.sec-label::before{content:'';width:16px;height:1px;background:var(--orange)}
+.sec-sub{font-size:0.78rem;font-weight:300;color:var(--muted);margin-bottom:24px;line-height:1.6}
+
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+
+.tool-card{border:1px solid var(--border2);border-radius:3px;background:var(--bg2);overflow:hidden;text-decoration:none;display:block;transition:border-color 0.25s,transform 0.2s;position:relative}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--orange),transparent);opacity:0;transition:opacity 0.3s}
+.tool-card:hover{border-color:rgba(232,114,12,0.4);transform:translateY(-2px)}
+.tool-card:hover::before{opacity:1}
+.tc-inner{padding:22px 20px}
+.tc-tag{font-size:0.58rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.tc-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:7px;line-height:1.2}
+.tc-desc{font-size:0.8rem;font-weight:300;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.tc-action{display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);transition:gap 0.2s}
+.tool-card:hover .tc-action{gap:10px}
+
+.tool-card.dev{cursor:default;opacity:0.65}
+.tool-card.dev:hover{transform:none;border-color:var(--border2)}
+.tool-card.dev::before{background:linear-gradient(90deg,rgba(232,114,12,0.3),transparent)}
+.tool-card.dev:hover::before{opacity:0.4}
+.dev-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.58rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);background:rgba(122,143,163,0.08);border:1px solid rgba(122,143,163,0.2);padding:3px 8px;border-radius:2px;margin-bottom:8px}
+.dev-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--muted);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.tc-action-dev{display:inline-flex;align-items:center;gap:6px;font-size:0.72rem;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+
+.future-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.future-card{border:1px solid rgba(232,114,12,0.05);border-radius:3px;background:rgba(38,24,8,0.4);padding:18px 16px;opacity:0.4}
+.future-tag{font-size:0.56rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.future-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.future-desc{font-size:0.75rem;font-weight:300;color:var(--muted);line-height:1.55}
+
+footer{border-top:1px solid var(--border2);padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;background:var(--bg2);position:relative;z-index:1}
+footer::before{content:'';position:absolute;top:-1px;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--orange),transparent)}
+.footer-eu{font-size:0.72rem;font-weight:300;color:rgba(176,128,96,0.35)}
+.footer-eu span{color:rgba(232,114,12,0.5);font-weight:500}
+.footer-tag{font-family:'Cormorant Garamond',serif;font-size:0.82rem;font-weight:300;font-style:italic;color:rgba(232,114,12,0.3)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1),transform 0.6s cubic-bezier(0.22,1,0.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:0.07s}.rd2{transition-delay:0.14s}.rd3{transition-delay:0.21s}
+.rd4{transition-delay:0.28s}.rd5{transition-delay:0.35s}
+
+@media(max-width:640px){
+  nav{padding:14px 18px}
+  .nav-cliente-nome{font-size:0.9rem}
+  .hero{padding:36px 18px 28px}
+  .sec{padding:28px 18px}
+  footer{padding:20px 18px;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://eumaisempresa.github.io/eumaisempreendedor/clientes/" class="nav-eu">
+    EU<sup style="font-size:0.6em;vertical-align:super">+</sup> <span>Empreender</span>
+  </a>
+  <div class="nav-cliente">
+    <img src="./logo.png" onerror="this.style.display='none'" alt="Logo Colinas">
+    <span class="nav-cliente-nome">Lavanderia Colinas</span>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow reveal">Painel do Empreendedor</div>
+  <h1 class="reveal rd1">Bem-vindo ao seu espaço,<br>Lavanderia Colinas.</h1>
+  <p class="reveal rd2">Aqui estão todas as ferramentas e entregas da sua parceria com EU⁺ Empreender. Acesse o que já está disponível e acompanhe o que está sendo construído para o seu negócio.</p>
+</div>
+
+<!-- ENTREGAS ATIVAS -->
+<section class="sec">
+  <div class="sec-label reveal">Disponível agora</div>
+  <p class="sec-sub reveal rd1">Ferramentas já ativas para a sua operação.</p>
+  <div class="tools-grid">
+
+    <div class="tool-card dev reveal rd1">
+      <div class="tc-inner">
+        <div class="dev-badge">Em desenvolvimento</div>
+        <div class="tc-tag">Gestão Operacional</div>
+        <div class="tc-name">Controle de Pedidos</div>
+        <div class="tc-desc">Registro e acompanhamento de pedidos de lavanderia — entrada, status e entrega — de forma simples e no celular.</div>
+        <span class="tc-action-dev">Em breve →</span>
+      </div>
+    </div>
+
+    <div class="tool-card dev reveal rd2">
+      <div class="tc-inner">
+        <div class="dev-badge">Em desenvolvimento</div>
+        <div class="tc-tag">Financeiro</div>
+        <div class="tc-name">Controle de Caixa</div>
+        <div class="tc-desc">Visão clara das entradas e saídas diárias, fechamento de caixa e histórico financeiro simplificado.</div>
+        <span class="tc-action-dev">Em breve →</span>
+      </div>
+    </div>
+
+    <div class="tool-card dev reveal rd3">
+      <div class="tc-inner">
+        <div class="dev-badge">Em desenvolvimento</div>
+        <div class="tc-tag">Clientes</div>
+        <div class="tc-name">Cadastro de Clientes</div>
+        <div class="tc-desc">Gestão simples dos seus clientes — histórico de serviços, preferências e contato rápido via WhatsApp.</div>
+        <span class="tc-action-dev">Em breve →</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="sec">
+  <div class="sec-label reveal">Próximas entregas · Roadmap</div>
+  <p class="sec-sub reveal rd1">O que está sendo planejado para a Lavanderia Colinas.</p>
+  <div class="future-grid">
+    <div class="future-card"><div class="future-tag">Operações</div><div class="future-name">Roupa por Roupa</div><div class="future-desc">Etiquetagem e rastreamento individual de cada peça dentro do pedido.</div></div>
+    <div class="future-card"><div class="future-tag">Entregas</div><div class="future-name">Rota de Entrega</div><div class="future-desc">Organização das entregas por região e horário para otimizar o tempo do motoboy.</div></div>
+    <div class="future-card"><div class="future-tag">Marketing</div><div class="future-name">Mensagem de Retorno</div><div class="future-desc">Lembretes automáticos via WhatsApp para clientes que não voltaram em 30 dias.</div></div>
+    <div class="future-card"><div class="future-tag">Financeiro</div><div class="future-name">Contas a Receber</div><div class="future-desc">Controle de pagamentos pendentes e alertas de inadimplência.</div></div>
+    <div class="future-card"><div class="future-tag">Gestão</div><div class="future-name">Relatório Semanal</div><div class="future-desc">Resumo automático da semana: peças, faturamento e clientes atendidos.</div></div>
+    <div class="future-card"><div class="future-tag">Crescimento</div><div class="future-name">Precificação Inteligente</div><div class="future-desc">Tabela de preços por tipo de peça com sugestão de reajuste baseada em custos.</div></div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-eu">Uma entrega <span>EU⁺ Empreender</span> · eumaisempresa@gmail.com · (27) 99813-1806</span>
+  <span class="footer-tag">Gestão simples para quem vive o negócio.</span>
+</footer>
+
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('visible')),60);
+</script>
+</body>
+</html>
